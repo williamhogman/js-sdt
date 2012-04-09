@@ -11,7 +11,11 @@ function jq_ready() {
     sdt.plot(g,sdt.fn(sdt.from_rate(0.9,0.1)));
 }
 </script>
-
+{% highlight javascript %}
+// This is the code for generating the above graph
+data = sdt.from_rate(0.9,0.1); // Hit-rate = 90% false alarmrate = 10%
+sdt.plot($("#graph1"),sdt.fn(data));
+{% endhighlight %}
 sdt-js is a Javascript library for signal detection theory, written in
 CoffeeScript. It is primarily intended for educational purposes, but
 might be useful for other things as well.
