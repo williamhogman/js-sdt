@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Signal detection theory</title>
+  </head>
+  <body>
+    <div id="distr-graphs" style="height: 300px;">
+    </div>
+    <div id="controls">
+      <div>
+        <p>
+          <span>Hit-rate</span>
+          <input id="hr" type="range" step="0.01" min="0.01" max="0.99"
+        value="0.5" />
+          <span></span>
+        </p>
+        <p>
+          <span>Miss</span>
+          <input  id="mr" type="range" step="0.01" min="0.01" max="0.99"
+        value="0.5" />
+          <span></span>
+        </p>
+      </div>
+      <div>
+        <p>
+          <span>False-Alarms</span>
+          <input  id="far" type="range" step="0.01" min="0.01" max="0.99"
+                 value="0.5" />
+          <span></span>
+        </p>
+
+        <p>
+          <span>Correct-Rejections</span>
+          <input  id="cr" type="range" step="0.01" min="0.01" max="0.99"
+                 value="0.5" />
+          <span></span>
+        </p>
+      </div>
+      <div>
+        <p>
+          <span>d'</span>
+          <input  id="dprime" type="range" step="0.001", min="-4.65"
+                 max="4.65" />
+          <span></span>
+        </p>
+      </div>
+      <div class="status">
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="/dist/jstat.min.js"></script>
+    <script src="/dist/jquery.flot.min.js"></script>
+    <script src="/dist/sdt.js"></script>
+    <script>
+      var our_sdt;
+
+      var redraw = function(){
+
+
+      var far,hr;
+      far = parseFloat($("#far").val())
+      hr = parseFloat($("#hr").val())
+
+      our_sdt = sdt.from_rate(hr,far);
+
+      $("#dprime").val(our_sdt.dprime);
+      
+
+
+
+
+      far = our_sdt.far.toFixed(2);
+      hr = our_sdt.hr.toFixed(2);
+
+      status_html = "<p>&beta; ="+our_sdt.criteria.toFixed(2)+"</p>"+
+      "<p>Pr(yes) = "+our_sdt.yes.toFixed(2)+"</p>"+
+      "<p>Pr(no) = "+our_sdt.no.toFixed(2)+"</p>";
+      $("#controls .status").html(status_html);
+
+
+      $("input[type=range]").each(function(i,x){
+      
+      $(x).next().html(parseFloat($(x).val()).toFixed(2))
+
+      });
+
+      sdt.plot($("#distr-graphs"),sdt.fn(our_sdt));
+      
+      }
+
+      var fix_to = function(source,target){
+      $(target).val(1 - $(source).val());
+      }
+
+      var change_handler = function(source,target){
+
+      $(source).change(function(){
+      fix_to(source,target);
+      redraw();
+      })
+
+      }
+
+      $(redraw);
+
+      change_handler("#hr","#mr");
+      change_handler("#mr","#hr");
+      
+      change_handler("#far","#cr");
+      change_handler("#cr","#far");
+      
+
+      $("#far").change(redraw);
+
+    </script>
+  </body>
+</html>
