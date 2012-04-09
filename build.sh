@@ -4,6 +4,8 @@
 # Build script for js-sdt
 # 
 
+mkdir "dist"
+
 echo "Building js-sdt"
 
 type coffee >/dev/null 2>&1 || {
