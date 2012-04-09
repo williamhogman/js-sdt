@@ -183,6 +183,12 @@ footer {
   bottom:50px;
 }
 
+
+#graph1 {
+    height: 200px;
+}
+
+
 @media print, screen and (max-width: 960px) {
   
   div.wrapper {
