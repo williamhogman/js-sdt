@@ -11,44 +11,42 @@ Usage
 sdt.from_rate(hit_rate,false_alarm_rate) returns an object containing
 several properties related to SDT. 
 
-    {% highlight javascript %}
-        // sdt.from_rate(HitRate,FalseAlarmRate)
-        var yourdata = sdt.from_rate(.9,.1) // implies miss=.1 and cr=.9
-        // This returns
-        {
-            // Correct rejections
-            cr: 0.9,
+{% highlight javascript %}
+// sdt.from_rate(HitRate,FalseAlarmRate)
+var yourdata = sdt.from_rate(.9,.1)
+// This returns
+{
+    // Correct rejections
+    cr: 0.9,
 
-            // Misses 
-            mr: 0.1,
-            
-            // Hits
-            hr: 0.9,
-            
-            // False alarms
-            far: 0.1,
-            
+    // Misses 
+    mr: 0.1,
 
-            // beta and dprime
-            dprime: 2.56,
-            criteria: 1,
-            
-            // pr(no) and pr(yes) responses
-            no: 0.5
-            yes: 0.5
+    // Hits
+    hr: 0.9,
 
-                
-        }
-        
-        // You can then call
-        sdt.fn(yourdata) //which extends yourdata with
-        {
-                signal: function(x) {...}
-                noise: function(x) {...}
-        }
-        // sdt.plot uses these two functions for plotting
-        
-        {% endhighlight %}
+    // False alarms
+    far: 0.1,
+
+
+    // beta and dprime
+    dprime: 2.56,
+    criteria: 1,
+
+    // pr(no) and pr(yes) responses
+    no: 0.5
+    yes: 0.5
+}
+
+// You can then call
+sdt.fn(yourdata) //which extends yourdata with
+{
+        signal: function(x) {...}
+        noise: function(x) {...}
+}
+// sdt.plot uses these two functions for plotting
+
+{% endhighlight %}
 
 
 
