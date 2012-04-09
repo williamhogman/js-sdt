@@ -11,15 +11,14 @@ Usage
 sdt.from_rate(hit_rate,false_alarm_rate) returns an object containing
 several properties related to SDT. 
 
-```javascript
-
+    {% highlight javascript %}
         // sdt.from_rate(HitRate,FalseAlarmRate)
         var yourdata = sdt.from_rate(.9,.1) // implies miss=.1 and cr=.9
         // This returns
         {
             // Correct rejections
             cr: 0.9,
-            
+
             // Misses 
             mr: 0.1,
             
@@ -49,8 +48,8 @@ several properties related to SDT.
         }
         // sdt.plot uses these two functions for plotting
         
+        {% endhighlight %}
 
-```
 
 
 Building
