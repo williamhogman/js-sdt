@@ -116,7 +116,6 @@ header ul {
 
 header li {
   width:89px;
-  float:left;
   border-right:1px solid #d2d2d2;
   height:40px;
 }
@@ -179,11 +178,7 @@ hr {
     margin:0;
   }
   
-  header, section, footer {
-    float:none;
-    position:static;
-    width:auto;
-  }
+
   
   header {
     padding-right:320px;
